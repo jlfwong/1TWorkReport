@@ -1,0 +1,9 @@
+- @blog_posts.each do |blog_post|
+  %h1= blog_post.title
+  = link_to 'Edit', edit_admin_blog_post_path(blog_post)
+  OR
+  = link_to 'Delete', admin_blog_post_path(blog_post), :method => :delete, :confirm => 'Are you sure?'
+  %hr/
+
+= link_to 'Add New', new_admin_blog_post_path
+

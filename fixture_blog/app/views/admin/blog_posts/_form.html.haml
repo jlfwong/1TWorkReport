@@ -1,0 +1,11 @@
+- action = @blog_post.new_record? ? :create : :update
+
+= form_for @blog_post, :url => {:action => action} do |f|
+  .field
+    Title
+    = f.text_field :title
+  .field
+    Content
+    = f.text_area :content
+  .field
+    = f.submit 'Save'
