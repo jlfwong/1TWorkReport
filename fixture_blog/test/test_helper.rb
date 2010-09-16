@@ -9,7 +9,7 @@ class ActiveSupport::TestCase
   #   assert_fixture_validity :blog_post
   def assert_fixture_validity(model_name)
     model_name.to_s.classify.constantize.all.each do |model|
-      assert model.valid? model.errors.full_messages
+      assert model.valid?, model.errors.inspect
     end
   end
 
@@ -43,14 +43,14 @@ end
 
 class ActionController::TestCase
   include TestAuth
-  def login(username = 'admin', password = 'admin')
+  def login(username = 'hello', password = 'world')
     @request.env['HTTP_AUTHORIZATION'] = auth_encode(username,password)
   end
 end
 
 class ActionDispatch::IntegrationTest
   include TestAuth
-  def auth_header(username = 'admin', password = 'admin')
+  def auth_header(username = 'hello', password = 'world')
     {'HTTP_AUTHORIZATION' => auth_encode(username,password)}
   end
 end

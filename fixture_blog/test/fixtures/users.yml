@@ -1,0 +1,3 @@
+default: &defaults
+  username: hello
+  password: 5378488116c9ba4f60e7ee6f42711fa1b2acd630

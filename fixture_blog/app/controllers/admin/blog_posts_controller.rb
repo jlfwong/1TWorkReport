@@ -36,6 +36,7 @@ class Admin::BlogPostsController < Admin::BaseController
 private
   def build_blog_post
     @blog_post = BlogPost.new(params[:blog_post])
+    @blog_post.user = @session_user
   end
 
   def load_blog_post

@@ -1,4 +1,7 @@
 class BlogPost < ActiveRecord::Base
-  validates :title,   :length => 5..25
-  validates :content, :presence => true
+  belongs_to :user
+
+  validates :user,    :presence   => true
+  validates :title,   :length     => 5..25
+  validates :content, :presence   => true
 end
