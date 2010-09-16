@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   validates :password,  :length     => 40..40,
                         :format     => /\A[a-z0-9]+\Z/
   
-  before_validation :generate_hash
+  before_validation :generate_hash, :on => :create
 
   def self.password_hash(username,password)
     Digest::SHA1.hexdigest "#{username}:#{password}"

@@ -46,14 +46,24 @@ end
 
 class ActionController::TestCase
   include TestAuth
-  def login(username = 'admin', password = 'admin')
+  def login(username = nil, password = nil)
+    if username == nil && password == nil
+      @test_session_user ||= Factory(:user)
+      username = @test_session_user.username
+      password = @test_session_user.password_raw
+    end
     @request.env['HTTP_AUTHORIZATION'] = auth_encode(username,password)
   end
 end
 
 class ActionDispatch::IntegrationTest
   include TestAuth
-  def auth_header(username = 'admin', password = 'admin')
+  def auth_header(username = nil, password = nil)
+    if username == nil && password == nil
+      @test_session_user ||= Factory(:user)
+      username = @test_session_user.username
+      password = @test_session_user.password_raw
+    end
     {'HTTP_AUTHORIZATION' => auth_encode(username,password)}
   end
 end
