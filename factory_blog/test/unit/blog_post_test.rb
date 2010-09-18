@@ -32,5 +32,12 @@ class BlogPostTest < ActiveSupport::TestCase
     blog_post.content = 'something'
     assert blog_post.valid?
   end
+
+  def test_scope_published
+    unpublished_post  = Factory(:unpublished_blog_post)
+    published_post    = Factory(:published_blog_post)
+    assert BlogPost.published.include? published_post
+    assert !(BlogPost.published.include? unpublished_post)
+  end
 end
 
