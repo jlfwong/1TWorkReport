@@ -4,5 +4,6 @@ class AddUserIdToBlogPost < ActiveRecord::Migration
   end
 
   def self.down
+    remove_column :blog_posts, :user_id
   end
 end

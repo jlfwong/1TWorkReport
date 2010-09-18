@@ -2,3 +2,12 @@ default: &defaults
   user: default
   title: MyString
   content: MyText
+
+published: 
+  <<: *defaults
+  publish_at: <%= 7.days.ago.to_s(:db) %>
+
+unpublished: 
+  <<: *defaults
+  publish_at: <%= 7.days.from_now.to_s(:db) %>
+

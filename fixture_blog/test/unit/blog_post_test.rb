@@ -32,4 +32,9 @@ class BlogPostTest < ActiveSupport::TestCase
     blog_post.content = 'something'
     assert blog_post.valid?
   end
+
+  def test_scope_published
+    assert BlogPost.published.include? blog_posts(:published)
+    assert !(BlogPost.published.include? blog_posts(:unpublished))
+  end
 end
