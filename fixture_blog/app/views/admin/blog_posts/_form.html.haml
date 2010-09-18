@@ -1,6 +1,9 @@
 - action = @blog_post.new_record? ? :create : :update
 
 = form_for @blog_post, :url => {:action => action} do |f|
+  - @blog_post.errors.full_messages.each do |msg|
+    .err{:style => 'color:red'}
+      = msg
   .field
     Title
     = f.text_field :title

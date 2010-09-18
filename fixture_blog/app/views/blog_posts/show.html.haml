@@ -1,3 +1,10 @@
 %h1= @blog_post.title
 %p= @blog_post.content
+%hr/
+- if @blog_post.comments.present?
+  %ul
+    = render :partial => 'comment', :collection => @blog_post.comments
+
+= link_to 'Comment on this Post', new_blog_post_comment_path(@blog_post)
+
 = link_to 'Back to Index', blog_post_index_path

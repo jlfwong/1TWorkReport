@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+default: &defaults
+  name:     Default Comment Name
+  content:  Default Comment Text
+  parent:   published (BlogPost)
+  blog_post: published
+
+reply:
+  name:     Default Reply Name
+  content:  Default Reply Text
+  parent:   default (Comment)
+  blog_post: published

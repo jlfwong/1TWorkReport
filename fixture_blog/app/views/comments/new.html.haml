@@ -1,0 +1,18 @@
+= form_for @comment do |f|
+  - @comment.errors.full_messages.each do |msg|
+    .err{:style => 'color:red'}
+      = msg
+  = f.hidden_field :blog_post_id
+  = f.hidden_field :parent_id
+  = f.hidden_field :parent_type
+  .field
+    Name:  
+    = f.text_field :name
+  .field
+    Content:
+    = f.text_area :content
+  .field
+    = f.submit 'Save'
+
+- if @comment.blog_post.present?
+  = link_to 'Back to Post', blog_post_path(@comment.blog_post)

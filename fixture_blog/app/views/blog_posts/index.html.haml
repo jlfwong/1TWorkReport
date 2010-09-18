@@ -1,4 +1,4 @@
 - @blog_posts.each do |post|
-  %h1= post.title
+  %h1= link_to post.title, blog_post_path(post)
   %p= post.content
   %hr/

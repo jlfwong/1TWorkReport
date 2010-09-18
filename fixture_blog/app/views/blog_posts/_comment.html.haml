@@ -1,0 +1,8 @@
+%li
+  %h2= comment.name
+  %p= comment.content
+  = link_to 'Reply', reply_comment_path(comment)
+  - if comment.replies.present?
+    %ul
+      = render :partial => 'comment', :collection => comment.replies
+

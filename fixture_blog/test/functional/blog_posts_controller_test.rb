@@ -26,6 +26,8 @@ class BlogPostsControllerTest < ActionController::TestCase
     assert_response :success
     assert_body_contains blog_post.title
     assert_body_contains blog_post.content
+    assert_body_contains comments(:default).content
+    assert_body_contains comments(:reply).content
   end
 
   def test_get_show_unpublished
