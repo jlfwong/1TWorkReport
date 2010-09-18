@@ -9,15 +9,27 @@ class Comment < ActiveRecord::Base
   validates :blog_post, :presence => true
 
   validate :validates_parent
+
+  before_validation :set_blog_post_id
 private
   def validates_parent
-    return if parent.nil? || parent.class.name == self.class.name
-    unless parent.publish_at <= Time.zone.now
+    return if parent.nil? || (parent.class.name == self.class.name)
+    unless parent.publish_at && parent.publish_at <= Time.zone.now
       errors.add(:parent,"Post must be published to comment") 
     end
 
     if self.parent == self
       errors.add(:parent,"Parent cannot be self")
+    end
+  end
+
+  def set_blog_post_id
+    return if self.parent.nil?
+
+    if self.parent.is_a? BlogPost
+      self.blog_post = self.parent
+    elsif self.parent.is_a? Comment
+      self.blog_post = self.parent.blog_post
     end
   end
 end

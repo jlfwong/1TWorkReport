@@ -24,10 +24,14 @@ class BlogPostsControllerTest < ActionController::TestCase
 
   def test_get_show
     blog_post = Factory(:published_blog_post)
+    comment = Factory(:comment, :blog_post => blog_post, :parent => blog_post)
+    reply = Factory(:comment, :blog_post => blog_post, :parent => comment)
     get :show, :id => blog_post
     assert_response :success
     assert_body_contains blog_post.title
     assert_body_contains blog_post.content
+    assert_body_contains comment.content
+    assert_body_contains reply.content
   end
 
   def test_get_new_unpublished
